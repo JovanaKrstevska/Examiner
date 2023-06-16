@@ -9,7 +9,8 @@
     android:paddingRight="16dp"
     android:paddingLeft="16dp"
     tools:context=".MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:scaleType="centerCrop">
 
     <TextView
         android:id="@+id/WelcomeToExaminer"
@@ -17,47 +18,56 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_margin="70dp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/jacques_francois"
         android:paddingBottom="20dp"
         android:text="@string/txtWelcomeToExaminer"
-        android:textSize="50dp"
+        android:textColor="#FFFFFF"
+        android:textSize="47dp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintHorizontal_bias="0.656"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <Button
         android:id="@+id/LogIn"
-        android:layout_width="188dp"
+        android:layout_width="280dp"
         android:layout_height="54dp"
         android:layout_gravity="center"
         android:text="@string/Login"
+        android:fontFamily="@font/jacques_francois"
+        android:backgroundTint="@color/lightgray"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:cornerRadius="@android:dimen/app_icon_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583"
+        app:layout_constraintVertical_bias="0.649"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/Register"
-        android:layout_width="188dp"
-        android:layout_height="58dp"
+        android:layout_width="280dp"
+        android:layout_height="54dp"
         android:layout_gravity="center"
         android:text="@string/Register"
+        android:fontFamily="@font/jacques_francois"
+        android:backgroundTint="@color/lightgray"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:cornerRadius="@android:dimen/app_icon_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WelcomeToExaminer"
-        app:layout_constraintVertical_bias="0.605"
+        app:layout_constraintVertical_bias="0.653"
         tools:ignore="MissingConstraints" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
