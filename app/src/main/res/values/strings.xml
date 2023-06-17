@@ -4,4 +4,9 @@
     <string name="Login">Log in</string>
     <string name="Register">Register</string>
     <string name="SignIn">or sign in with:</string>
+    <string name="createAcc">Create Account</string>
+    <string name="FirstLast">First and Last name:</string>
+    <string name="email">Write your email:</string>
+    <string name="password">Add your password:</string>
+    <string name="confirm">Confirm your password:</string>
 </resources>
