@@ -34,32 +34,34 @@
     <Button
         android:id="@+id/LogIn"
         android:layout_width="280dp"
-        android:layout_height="54dp"
+        android:layout_height="52dp"
         android:layout_gravity="center"
-        android:text="@string/Login"
-        android:fontFamily="@font/jacques_francois"
         android:backgroundTint="@color/lightgray"
+        android:fontFamily="@font/jacques_francois"
+        android:text="@string/Login"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:textSize="15dp"
         app:cornerRadius="@android:dimen/app_icon_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.649"
+        app:layout_constraintVertical_bias="0.652"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/Register"
         android:layout_width="280dp"
-        android:layout_height="54dp"
+        android:layout_height="52dp"
         android:layout_gravity="center"
         android:text="@string/Register"
         android:fontFamily="@font/jacques_francois"
         android:backgroundTint="@color/lightgray"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:textSize="15dp"
         app:cornerRadius="@android:dimen/app_icon_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,5 +71,44 @@
         app:layout_constraintVertical_bias="0.653"
         tools:ignore="MissingConstraints" />
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="370dp"
+        android:layout_height="54dp"
+        android:src="@drawable/line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.831"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <TextView
+        android:id="@+id/SignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jacques_francois"
+        android:gravity="center"
+        android:text="@string/SignIn"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.853"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <ImageView
+        android:layout_width="313dp"
+        android:layout_height="167dp"
+        android:src="@drawable/logo_examiner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
