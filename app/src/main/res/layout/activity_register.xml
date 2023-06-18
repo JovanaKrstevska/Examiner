@@ -10,6 +10,7 @@
     android:paddingLeft="16dp"
     tools:context=".RegisterActivity"
     android:background="@drawable/background_register"
+    android:orientation="vertical"
     android:scaleType="centerCrop">
 
     <TextView
