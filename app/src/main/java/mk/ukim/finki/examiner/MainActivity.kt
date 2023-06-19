@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View.inflate
 import android.widget.Button
 import androidx.appcompat.resources.Compatibility.Api21Impl.inflate
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import mk.ukim.finki.examiner.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
