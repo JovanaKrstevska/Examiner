@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dashboard_background"
+    android:orientation="vertical"
     tools:context=".DashBoardActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnGoLogOut"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/lightgray"
+        android:fontFamily="@font/jacques_francois"
+        android:text="@string/LogOut"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:cornerRadius="@android:dimen/app_icon_size"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="4dp"
+        tools:ignore="MissingConstraints" />
+
+
+</LinearLayout>

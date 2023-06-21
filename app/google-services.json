@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "852050161918",
+    "project_id": "loginandregisterexaminer-f1317",
+    "storage_bucket": "loginandregisterexaminer-f1317.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852050161918:android:b453c4b3bd4277e95ab5af",
+        "android_client_info": {
+          "package_name": "mk.ukim.finki.examiner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852050161918-hd3kg4d6t4uhhfv414sv2l4bpn20u3us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mk.ukim.finki.examiner",
+            "certificate_hash": "73acb038b83e0634cd9fc376a22784d1420628e1"
+          }
+        },
+        {
+          "client_id": "852050161918-psm07p8n5fpl7dvqm0o388nebhj603ho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCew8It1XMjxK6da6PLwFp3_byilCQ0V5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852050161918-psm07p8n5fpl7dvqm0o388nebhj603ho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

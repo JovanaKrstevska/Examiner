@@ -2,6 +2,7 @@
     <string name="app_name">Examiner</string>
     <string name="txtWelcomeToExaminer">Welcome to</string>
     <string name="Login">Log in</string>
+    <string name="LogOut">Log out</string>
     <string name="Register">Register</string>
     <string name="SignIn">or sign in with:</string>
     <string name="createAcc">Create Account</string>
