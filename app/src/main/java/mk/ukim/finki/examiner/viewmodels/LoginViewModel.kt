@@ -13,9 +13,9 @@ class LoginViewModel : ViewModel() {
     val password: LiveData<String> get() = mutublePassword
 
     fun selectEmail(email: String){
-        mutubleEmail.value = email;
+        this.mutubleEmail.value = email;
     }
     fun selectPassword(password: String){
-        mutublePassword.value = password;
+        this.mutublePassword.value = password;
     }
 }

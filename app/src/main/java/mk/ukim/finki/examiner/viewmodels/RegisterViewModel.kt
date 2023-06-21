@@ -17,15 +17,15 @@ class RegisterViewModel : ViewModel() {
     val NameAndSurname: LiveData<String> get() = mutubleNameAndSurname
 
     fun selectEmail(email: String){
-        mutubleEmail.value = email;
+        this.mutubleEmail.value = email;
     }
     fun selectPassword(password: String){
-        mutublePassword.value = password;
+        this.mutublePassword.value = password;
     }
     fun selectConfirmPassword(confirmPassword: String){
-        mutubleConfirmPassword.value = confirmPassword;
+        this.mutubleConfirmPassword.value = confirmPassword;
     }
     fun selectNameAndSurname(NameAndSurname: String){
-        mutubleNameAndSurname.value = NameAndSurname;
+        this.mutubleNameAndSurname.value = NameAndSurname;
     }
 }
