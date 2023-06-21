@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         //Konfiguracija Google sign in
         val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail().
-            build()
+            .requestEmail()
+            .build()
 
         //Kreiranje na GoogleSignInCLient so koristenje na signInOptions
         client = GoogleSignIn.getClient(this, signInOptions)
