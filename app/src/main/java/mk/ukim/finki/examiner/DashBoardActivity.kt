@@ -25,14 +25,14 @@ class DashBoardActivity : AppCompatActivity() {
         auth = Firebase.auth
         user = auth.currentUser!!
         if(user == null){
-            val Intent: Intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(intent)
             finish()
         }
         btnGoToLogOut.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
-            val Intent: Intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

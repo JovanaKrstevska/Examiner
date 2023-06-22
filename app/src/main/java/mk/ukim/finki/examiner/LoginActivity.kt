@@ -22,8 +22,8 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val Intent:Intent = Intent(applicationContext, DashBoardActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(applicationContext, DashBoardActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }
@@ -54,8 +54,8 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(applicationContext, "Login Successful.", Toast.LENGTH_SHORT).show()
-                        val Intent:Intent = Intent(applicationContext, DashBoardActivity::class.java)
-                        startActivity(Intent)
+                        val intent = Intent(applicationContext, DashBoardActivity::class.java)
+                        startActivity(intent)
                         finish()
                     } else {
                         Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()

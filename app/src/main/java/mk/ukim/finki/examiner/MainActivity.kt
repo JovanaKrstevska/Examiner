@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity() {
 
 
         btnGoToRegisterActivity.setOnClickListener{
-            val Intent:Intent = Intent(this, RegisterActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
         btnGoToLogInActivity.setOnClickListener{
-            val Intent:Intent = Intent(this, LoginActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
         //Konfiguracija Google sign in
         val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithCredential(credential)
                 .addOnCompleteListener {task ->
                     if(task.isSuccessful){
+                        Toast.makeText(applicationContext, "SignIn Successful.", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, DashBoardActivity::class.java)
                         startActivity(intent)
                         finish()
