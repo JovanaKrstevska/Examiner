@@ -81,32 +81,34 @@ class RegisterActivity : AppCompatActivity() {
             activityResultLauncher.launch(photoPicker)
         }
 
+
         btnGoToDashboardActivity.setOnClickListener {
 //            registerViewModel.selectNameAndSurname(nameAndsurname.text.toString())
 //            registerViewModel.selectEmail(email.text.toString())
 //            registerViewModel.selectPassword(passord.text.toString())
 //            registerViewModel.selectConfirmPassword(confirmPassword.text.toString())
-            val userNameAndSurname: String = nameAndsurname.text.toString()
-            val userEmail : String = email.text.toString()
-            val userPassword : String = passord.text.toString()
-            val userConfirmPassword : String = confirmPassword.text.toString()
+                CreateAccount()
+                SaveData()
+        }
+    }
 
-            if(TextUtils.isEmpty(userNameAndSurname)){
-                Toast.makeText(this, "Enter First and Lat name", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            if(TextUtils.isEmpty(userEmail)){
-                Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            if(TextUtils.isEmpty(userPassword)){
-                Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            if(TextUtils.isEmpty(userConfirmPassword)){
-                Toast.makeText(this, "Enter confirm password", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+    fun CreateAccount(){
+        val userNameAndSurname: String = nameAndsurname.text.toString()
+        val userEmail : String = email.text.toString()
+        val userPassword : String = passord.text.toString()
+        val userConfirmPassword : String = confirmPassword.text.toString()
+
+        if(TextUtils.isEmpty(userNameAndSurname)){
+            Toast.makeText(this, "Enter First and Lat name", Toast.LENGTH_SHORT).show()
+        }else if(TextUtils.isEmpty(userEmail)){
+            Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show()
+        }else if(TextUtils.isEmpty(userPassword)){
+            Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
+        } else if(TextUtils.isEmpty(userConfirmPassword)){
+            Toast.makeText(this, "Enter confirm password", Toast.LENGTH_SHORT).show()
+        } else if(userPassword!=userConfirmPassword){
+            Toast.makeText(this, "Confirm password not match", Toast.LENGTH_SHORT).show()
+        } else {
             auth.createUserWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -118,20 +120,25 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
                     }
                 }
-            SaveData()
         }
     }
       fun SaveData(){
+          val password:String = passord.text.toString()
+          val confirm:String = confirmPassword.text.toString()
             val storageReference =
                 uri.lastPathSegment?.let {
                     FirebaseStorage.getInstance().getReference().child("Android Images").child(it)
                 }
-          storageReference?.putFile(uri)?.addOnSuccessListener {
-              val uriTask: Task<Uri> = it.storage.downloadUrl
-              while (!uriTask.isComplete);
-              val urlImage: Uri? = uriTask.result
-              imageURL = urlImage.toString()
-              uploadData()
+          if(password!=confirm){
+              return
+          } else {
+              storageReference?.putFile(uri)?.addOnSuccessListener {
+                  val uriTask: Task<Uri> = it.storage.downloadUrl
+                  while (!uriTask.isComplete);
+                  val urlImage: Uri? = uriTask.result
+                  imageURL = urlImage.toString()
+                  uploadData()
+              }
           }
     }
     fun uploadData(){
@@ -141,14 +148,17 @@ class RegisterActivity : AppCompatActivity() {
         val confirm:String = confirmPassword.text.toString()
 
         val dataClass = UserData(name, email, password, confirm, imageURL)
-
-        FirebaseDatabase.getInstance().getReference("Examiner Users").child(name).setValue(dataClass).addOnCompleteListener {
-            if(it.isSuccessful){
-                Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
-                finish()
+        if(password!=confirm){
+            return
+        } else {
+            FirebaseDatabase.getInstance().getReference("Examiner Users").child(name).setValue(dataClass).addOnCompleteListener {
+                if(it.isSuccessful){
+                    Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }.addOnFailureListener{
+                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
             }
-        }.addOnFailureListener{
-            Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
         }
 
     }
