@@ -154,7 +154,7 @@
         android:textColor="@color/white"
         android:fontFamily="@font/jacques_francois"
         android:text="Upload photo:"
-        android:textSize="23dp"
+        android:textSize="20dp"
         tools:ignore="MissingConstraints" />
     <Button
         android:id="@+id/btnGoToDashboardActivity"
