@@ -17,20 +17,24 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import mk.ukim.finki.examiner.data.UserData
 
 class DashBoardActivity : AppCompatActivity() {
 
     private lateinit var btnGoToLogOut: Button
-    private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
+    private lateinit var userName: String
+    private lateinit var image: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
 
         btnGoToLogOut = findViewById(R.id.btnGoLogOut)
-        auth = Firebase.auth
-        user = auth.currentUser!!
+        image = findViewById(R.id.uploadPhoto)
+        user = FirebaseAuth.getInstance().currentUser!!
+        userName = user.displayName.toString()
+        Picasso.get().load(user.photoUrl).into(image)
 
         if(user == null){
             val intent = Intent(applicationContext, LoginActivity::class.java)

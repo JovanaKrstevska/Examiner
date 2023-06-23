@@ -1,35 +1,25 @@
 package mk.ukim.finki.examiner
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.text.TextUtils
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.tasks.Task
-import com.google.firebase.storage.UploadTask
-import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import mk.ukim.finki.examiner.data.UserData
-import mk.ukim.finki.examiner.viewmodels.RegisterViewModel
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var nameAndsurname: EditText
@@ -113,10 +103,27 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Account created.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(applicationContext, DashBoardActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        val storageReference =
+                            uri.lastPathSegment?.let {
+                                FirebaseStorage.getInstance().reference.child("Android Images").child(it)
+                            }
+                        storageReference?.putFile(uri)?.addOnSuccessListener {
+                            val uriTask: Task<Uri> = it.storage.downloadUrl
+                            while (!uriTask.isComplete);
+                            val urlImage: Uri? = uriTask.result
+                            imageURL = urlImage.toString()
+                            val profileUpdate = userProfileChangeRequest {
+                                displayName = userNameAndSurname
+                                photoUri = Uri.parse(imageURL)
+                            }
+                            val user: FirebaseUser? = auth.currentUser
+                            user!!.updateProfile(profileUpdate).addOnSuccessListener {
+                                Toast.makeText(this, "Account created.", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(applicationContext, DashBoardActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                        }
                     } else {
                         Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
                     }
@@ -128,7 +135,7 @@ class RegisterActivity : AppCompatActivity() {
           val confirm:String = confirmPassword.text.toString()
             val storageReference =
                 uri.lastPathSegment?.let {
-                    FirebaseStorage.getInstance().getReference().child("Android Images").child(it)
+                    FirebaseStorage.getInstance().reference.child("Android Images").child(it)
                 }
           if(password!=confirm){
               return
@@ -138,29 +145,7 @@ class RegisterActivity : AppCompatActivity() {
                   while (!uriTask.isComplete);
                   val urlImage: Uri? = uriTask.result
                   imageURL = urlImage.toString()
-                  uploadData()
               }
           }
-    }
-    fun uploadData(){
-        val name:String = nameAndsurname.text.toString()
-        val email:String = email.text.toString()
-        val password:String = passord.text.toString()
-        val confirm:String = confirmPassword.text.toString()
-
-        val dataClass = UserData(name, email, password, confirm, imageURL)
-        if(password!=confirm){
-            return
-        } else {
-            FirebaseDatabase.getInstance().getReference("Examiner Users").child(name).setValue(dataClass).addOnCompleteListener {
-                if(it.isSuccessful){
-                    Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-            }.addOnFailureListener{
-                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
-
     }
 }
