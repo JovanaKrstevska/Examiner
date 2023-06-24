@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_register"
+    tools:context=".fragments.RezultatFragment">
+
+    <TextView
+        android:id="@+id/results"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/jacques_francois"
+        android:text="@string/rezultat"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="10dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/resultsShow"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:fontFamily="@font/jacques_francois"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="50dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="170dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/lightgray"
+        android:fontFamily="@font/jacques_francois"
+        android:text="Почетна"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:cornerRadius="@android:dimen/app_icon_size"
+        android:layout_marginTop="250dp" />
+
+</FrameLayout>

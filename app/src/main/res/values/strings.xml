@@ -17,6 +17,5 @@
     <string name="predmet3">Е-влада</string>
     <string name="predmet4">Бизнис и менаџмент</string>
     <string name="areyouready">Дали сте спремни?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Predmet 1</string>
+    <string name="rezultat">Испитот е завршен. Вашите поени:</string>
 </resources>

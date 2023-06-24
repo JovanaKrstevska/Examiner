@@ -5,56 +5,73 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import mk.ukim.finki.examiner.R
+import mk.ukim.finki.examiner.data.Predmet
+import mk.ukim.finki.examiner.data.uipList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Predmet2Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Predmet2Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var prasanje: TextView
+    private lateinit var group: RadioGroup
+    private lateinit var optionOne: RadioButton
+    private lateinit var optionTwo: RadioButton
+    private lateinit var optionThree: RadioButton
+    private lateinit var nextQ: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_predmet2, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Predmet2Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Predmet2Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        prasanje = view.findViewById(R.id.prasanje)
+        group = view.findViewById(R.id.radioGroup)
+        nextQ = view.findViewById(R.id.btnNext)
+        optionOne = view.findViewById(R.id.odg1)
+        optionTwo = view.findViewById(R.id.odg2)
+        optionThree = view.findViewById(R.id.odg3)
+
+        val mutable: MutableList<Predmet> = uipList()
+        mutable.shuffle()
+        var counter: Int = 0
+        var poeni: Int = 0
+        prasanje.text = mutable[counter].prasanje
+
+        optionOne.text = mutable[counter].odgovor1
+        optionTwo.text = mutable[counter].odgovor2
+        optionThree.text = mutable[counter].odgovor3
+
+        nextQ.setOnClickListener {
+            var selectedOption = group.checkedRadioButtonId
+            val radiobtn: RadioButton = view.findViewById(selectedOption)
+            if(radiobtn.text == mutable[counter].tocenOdgovor){
+                poeni+=5
+            }
+            counter +=1
+            group.clearCheck()
+            if(counter<mutable.size){
+                prasanje.text = mutable[counter].prasanje
+                optionOne.text = mutable[counter].odgovor1
+                optionTwo.text = mutable[counter].odgovor2
+                optionThree.text = mutable[counter].odgovor3
+            } else {
+                parentFragmentManager.commit {
+                    replace<RezultatFragment>(R.id.fragment_container_view)
+                    setReorderingAllowed(true)
+                    addToBackStack(null)
                 }
             }
+        }
     }
+
 }

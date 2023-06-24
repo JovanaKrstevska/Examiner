@@ -3,12 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/default_background"
     tools:context=".fragments.Predmet1Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/prasanje"
+        android:layout_width="410dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="250dp"
+        android:fontFamily="@font/jacques_francois"
+        android:textColor="@color/white"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="410dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="380dp">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/odg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="nesto"
+            android:fontFamily="@font/jacques_francois"
+            android:textColor="@color/white"
+            android:textSize="15dp">
+
+        </androidx.appcompat.widget.AppCompatRadioButton>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/odg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="nesto"
+            android:fontFamily="@font/jacques_francois"
+            android:textColor="@color/white"
+            android:textSize="15dp">
+
+        </androidx.appcompat.widget.AppCompatRadioButton>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/odg3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="nesto"
+            android:fontFamily="@font/jacques_francois"
+            android:textColor="@color/white"
+            android:textSize="15dp">
+
+        </androidx.appcompat.widget.AppCompatRadioButton>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="170dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/lightgray"
+        android:fontFamily="@font/jacques_francois"
+        android:text="Следно"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:cornerRadius="@android:dimen/app_icon_size"
+        android:layout_marginTop="250dp" />
 
 </FrameLayout>
