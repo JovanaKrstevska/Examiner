@@ -1,22 +1,14 @@
 package mk.ukim.finki.examiner
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import mk.ukim.finki.examiner.data.UserData
 
 class DashBoardActivity : AppCompatActivity() {
 
@@ -24,6 +16,10 @@ class DashBoardActivity : AppCompatActivity() {
     private lateinit var user: FirebaseUser
     private lateinit var userName: String
     private lateinit var image: ImageView
+    private lateinit var predmetImage1: ImageView
+    private lateinit var predmetImage2: ImageView
+    private lateinit var predmetImage3: ImageView
+    private lateinit var predmetImage4: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +27,10 @@ class DashBoardActivity : AppCompatActivity() {
 
         btnGoToLogOut = findViewById(R.id.btnGoLogOut)
         image = findViewById(R.id.uploadPhoto)
+        predmetImage1 = findViewById(R.id.predmet1)
+        predmetImage2 = findViewById(R.id.predmet2)
+        predmetImage3 = findViewById(R.id.predmet3)
+        predmetImage4 = findViewById(R.id.predmet4)
         user = FirebaseAuth.getInstance().currentUser!!
         userName = user.displayName.toString()
         Picasso.get().load(user.photoUrl).into(image)
@@ -43,6 +43,31 @@ class DashBoardActivity : AppCompatActivity() {
         btnGoToLogOut.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        predmetImage1.setOnClickListener{
+            val intent = Intent(applicationContext, AreYouReadyActivity::class.java)
+            intent.putExtra("kluc", "mpp")
+            startActivity(intent)
+            finish()
+        }
+        predmetImage2.setOnClickListener{
+            val intent = Intent(applicationContext, AreYouReadyActivity::class.java)
+            intent.putExtra("kluc", "uip")
+            startActivity(intent)
+            finish()
+        }
+        predmetImage3.setOnClickListener{
+            val intent = Intent(applicationContext, AreYouReadyActivity::class.java)
+            intent.putExtra("kluc", "evlada")
+            startActivity(intent)
+            finish()
+        }
+        predmetImage4.setOnClickListener{
+            val intent = Intent(applicationContext, AreYouReadyActivity::class.java)
+            intent.putExtra("kluc", "biz")
             startActivity(intent)
             finish()
         }

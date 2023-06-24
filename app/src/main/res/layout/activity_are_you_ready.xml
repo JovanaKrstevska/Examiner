@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_background"
+    tools:context=".AreYouReadyActivity">
+
+    <TextView
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="49dp"
+        android:text="@string/areyouready"
+        android:fontFamily="@font/jacques_francois"
+        android:textColor="@color/white"
+        android:textSize="35dp"/>
+
+    <Button
+        android:id="@+id/btnGoQuit"
+        android:layout_width="170dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/lightgray"
+        android:fontFamily="@font/jacques_francois"
+        android:text="Откажи"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:cornerRadius="@android:dimen/app_icon_size"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="30dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnGoStart"
+        android:layout_width="170dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/lightgray"
+        android:fontFamily="@font/jacques_francois"
+        android:text="Почни"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:cornerRadius="@android:dimen/app_icon_size"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="220dp"
+        tools:ignore="MissingConstraints" />
+
+</RelativeLayout>

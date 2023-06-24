@@ -16,6 +16,20 @@
         android:theme="@style/Theme.Examiner"
         tools:targetApi="31">
         <activity
+            android:name=".FragmentPlaceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AreYouReadyActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".DashBoardActivity"
             android:exported="false">
             <meta-data

@@ -16,6 +16,7 @@
     <string name="predmet2">Управување со ИКТ проекти</string>
     <string name="predmet3">Е-влада</string>
     <string name="predmet4">Бизнис и менаџмент</string>
+    <string name="areyouready">Дали сте спремни?</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Predmet 1</string>
 </resources>
