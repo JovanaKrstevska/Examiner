@@ -11,6 +11,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -20,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import mk.ukim.finki.examiner.data.UserData
+import mk.ukim.finki.examiner.viewmodels.RegisterViewModel
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var nameAndsurname: EditText
@@ -32,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var btnGoToDashboardActivity: Button
     private lateinit var auth: FirebaseAuth
 
-//    private lateinit var registerViewModel: RegisterViewModel
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     public override fun onStart() {
         super.onStart()
@@ -56,8 +60,6 @@ class RegisterActivity : AppCompatActivity() {
         btnGoToDashboardActivity = findViewById(R.id.btnGoToDashboardActivity)
         auth = Firebase.auth
 
-//        registerViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
-
         val activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val Data: Intent? = result.data
@@ -74,12 +76,33 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         btnGoToDashboardActivity.setOnClickListener {
-//            registerViewModel.selectNameAndSurname(nameAndsurname.text.toString())
-//            registerViewModel.selectEmail(email.text.toString())
-//            registerViewModel.selectPassword(passord.text.toString())
-//            registerViewModel.selectConfirmPassword(confirmPassword.text.toString())
+            registerViewModel.selectNameAndSurname(nameAndsurname.text.toString())
+            registerViewModel.selectEmail(email.text.toString())
+            registerViewModel.selectPassword(passord.text.toString())
+            registerViewModel.selectConfirmPassword(confirmPassword.text.toString())
                 CreateAccount()
                 SaveData()
+
+        }
+        registerViewModel.nameSurname.observe(this){
+            if(nameAndsurname.text.toString() !=it){
+                nameAndsurname.setText(it)
+            }
+        }
+        registerViewModel.email.observe(this){
+            if(email.text.toString() !=it){
+                email.setText(it)
+            }
+        }
+        registerViewModel.password.observe(this){
+            if(passord.text.toString() !=it){
+                passord.setText(it)
+            }
+        }
+        registerViewModel.confirmPassword.observe(this){
+            if(confirmPassword.text.toString() !=it){
+                confirmPassword.setText(it)
+            }
         }
     }
 

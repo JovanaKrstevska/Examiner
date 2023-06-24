@@ -14,7 +14,7 @@ class RegisterViewModel : ViewModel() {
     val email: LiveData<String> get() = mutubleEmail
     val password: LiveData<String> get() = mutublePassword
     val confirmPassword: LiveData<String> get() = mutubleConfirmPassword
-    val NameAndSurname: LiveData<String> get() = mutubleNameAndSurname
+    val nameSurname: LiveData<String> get() = mutubleNameAndSurname
 
     fun selectEmail(email: String){
         this.mutubleEmail.value = email;
@@ -25,7 +25,7 @@ class RegisterViewModel : ViewModel() {
     fun selectConfirmPassword(confirmPassword: String){
         this.mutubleConfirmPassword.value = confirmPassword;
     }
-    fun selectNameAndSurname(NameAndSurname: String){
-        this.mutubleNameAndSurname.value = NameAndSurname;
+    fun selectNameAndSurname(nameSurname: String){
+        this.mutubleNameAndSurname.value = nameSurname;
     }
 }

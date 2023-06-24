@@ -7,9 +7,11 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import mk.ukim.finki.examiner.viewmodels.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var password: EditText
     private lateinit var btnGoToDaschboardActivity: Button
     private lateinit var auth: FirebaseAuth
+
+    private val loginViewModel: LoginViewModel by viewModels()
 
     public override fun onStart() {
         super.onStart()
@@ -41,6 +45,9 @@ class LoginActivity : AppCompatActivity() {
             val userEmail : String = email.text.toString()
             val userPassword : String = password.text.toString()
 
+            loginViewModel.selectEmail(email.text.toString())
+            loginViewModel.selectPassword(password.text.toString())
+
             if(TextUtils.isEmpty(userEmail)){
                 Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -62,6 +69,16 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
+        }
+        loginViewModel.email.observe(this){
+            if(email.text.toString() != it){
+                email.setText(it)
+            }
+        }
+        loginViewModel.password.observe(this){
+            if(password.text.toString() != it){
+                password.setText(it)
+            }
         }
     }
 }
