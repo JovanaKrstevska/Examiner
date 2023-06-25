@@ -11,8 +11,12 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import mk.ukim.finki.examiner.R
 import mk.ukim.finki.examiner.data.Predmet
+import mk.ukim.finki.examiner.data.UploadData
 import mk.ukim.finki.examiner.data.evladaList
 
 class Predmet3Fragment : Fragment() {
@@ -65,12 +69,48 @@ class Predmet3Fragment : Fragment() {
                 optionTwo.text = mutable[counter].odgovor2
                 optionThree.text = mutable[counter].odgovor3
             } else {
-                parentFragmentManager.commit {
-                    replace<RezultatFragment>(R.id.fragment_container_view)
-                    setReorderingAllowed(true)
-                    addToBackStack(null)
-                }
+                uploadData(poeni)
+                val bundle = Bundle()
+                bundle.putString("points", poeni.toString())
+                val fragment = RezultatFragment()
+                fragment.arguments = bundle
+                parentFragmentManager.beginTransaction().add(R.id.fragment_container_view, fragment).commit()
+//                parentFragmentManager.commit {
+//                    replace<RezultatFragment>(R.id.fragment_container_view)
+//                    setReorderingAllowed(true)
+//                    addToBackStack(null)
+//                }
             }
+        }
+    }
+    fun uploadData(poeni: Int){
+        val firebaseauth =  FirebaseAuth.getInstance()
+        val user: FirebaseUser? = firebaseauth.currentUser
+        var fullName = user?.displayName
+        var mail = user?.email
+        val points = poeni
+        var status:String = "Испитот не е положен"
+        var ocenka:Int = 5
+        if(points>=25 && points<=30){
+            ocenka = 6
+            status = "Испитот е положен"
+        } else if(points>30 && points<=35){
+            ocenka = 7
+            status = "Испитот е положен"
+        } else if(points>35 && points<=40){
+            ocenka = 8
+            status = "Испитот е положен"
+        }else if(points>40 && points<=45){
+            ocenka = 9
+            status = "Испитот е положен"
+        }else if(points>45 && points<=50){
+            ocenka = 10
+            status = "Испитот е положен"
+        }
+        val userUID = user?.uid
+        val data = UploadData(fullName, mail, points, status, ocenka)
+        if (userUID != null) {
+            FirebaseDatabase.getInstance().getReference("Е-влада").child(userUID).setValue(data)
         }
     }
 }

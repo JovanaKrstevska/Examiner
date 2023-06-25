@@ -11,23 +11,35 @@
         android:id="@+id/results"
         android:layout_width="400dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="180dp"
         android:fontFamily="@font/jacques_francois"
         android:text="@string/rezultat"
         android:textColor="@color/white"
         android:textSize="24dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginLeft="10dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/resultsShow"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/jacques_francois"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="130dp"
+        android:gravity="center"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/predmetStatus"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="250dp"
         android:fontFamily="@font/jacques_francois"
         android:textColor="@color/white"
         android:textSize="24dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="50dp"
         tools:ignore="MissingConstraints" />
 
     <Button

@@ -15,10 +15,14 @@ import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import mk.ukim.finki.examiner.R
 import mk.ukim.finki.examiner.data.Predmet
 import mk.ukim.finki.examiner.data.mppList
+import mk.ukim.finki.examiner.data.UploadData
+import java.time.LocalDate
 
 
 class Predmet1Fragment : Fragment() {
@@ -29,6 +33,7 @@ class Predmet1Fragment : Fragment() {
     private lateinit var optionTwo: RadioButton
     private lateinit var optionThree: RadioButton
     private lateinit var nextQ: Button
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +44,7 @@ class Predmet1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         prasanje = view.findViewById(R.id.prasanje)
         group = view.findViewById(R.id.radioGroup)
@@ -71,12 +77,48 @@ class Predmet1Fragment : Fragment() {
                 optionTwo.text = mutable[counter].odgovor2
                 optionThree.text = mutable[counter].odgovor3
             } else {
-                parentFragmentManager.commit {
-                    replace<RezultatFragment>(R.id.fragment_container_view)
-                    setReorderingAllowed(true)
-                    addToBackStack(null)
-                }
+                uploadData(poeni)
+                val bundle = Bundle()
+                bundle.putString("points", poeni.toString())
+                val fragment = RezultatFragment()
+                fragment.arguments = bundle
+                parentFragmentManager.beginTransaction().add(R.id.fragment_container_view, fragment).commit()
+//                parentFragmentManager.commit {
+//                    replace<RezultatFragment>(R.id.fragment_container_view)
+//                    setReorderingAllowed(true)
+//                    addToBackStack(null)
+//                }
             }
+        }
+    }
+    fun uploadData(poeni: Int){
+        val firebaseauth =  FirebaseAuth.getInstance()
+        val user: FirebaseUser? = firebaseauth.currentUser
+        var fullName = user?.displayName
+        var mail = user?.email
+        val points = poeni
+        var status:String = "Испитот не е положен"
+        var ocenka:Int = 5
+        if(points>=25 && points<=30){
+            ocenka = 6
+            status = "Испитот е положен"
+        } else if(points>30 && points<=35){
+            ocenka = 7
+            status = "Испитот е положен"
+        } else if(points>35 && points<=40){
+            ocenka = 8
+            status = "Испитот е положен"
+        }else if(points>40 && points<=45){
+            ocenka = 9
+            status = "Испитот е положен"
+        }else if(points>45 && points<=50){
+            ocenka = 10
+            status = "Испитот е положен"
+        }
+        val userUID = user?.uid
+        val data = UploadData(fullName, mail, points, status, ocenka)
+        if (userUID != null) {
+            FirebaseDatabase.getInstance().getReference("Мобилни платформи и програмирање").child(userUID).setValue(data)
         }
     }
 }
